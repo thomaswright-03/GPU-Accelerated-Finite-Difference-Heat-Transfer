@@ -127,7 +127,7 @@ def runGPU_CUDA2D(config):
 # ---------------------------------------------------------
 # RUN SELECTED SOLVERS
 # ---------------------------------------------------------
-# You’ve selected the fastest (CUDA) solvers for both 1D and 2D
+# Currently selected the fastest (CUDA) solvers for both 1D and 2D
 
 #Tmap1D, Thist1D, _ = runCPU1D(config1D)
 #Tmap2D, Thist2D, _ = runCPU2D(config2D)
@@ -141,8 +141,8 @@ Tmap2D, Thist2D, _ = runGPU_CUDA2D(config2D)         # Run full 2D CUDA simulati
 # ---------------------------------------------------------
 # Plots are saved to /plotting/plots with a filename prefix.
 
-heatmap1D(Tmap1D, config1D, probeX=0.2, prefix="Simultion 1 - ")   # 1D final distribution
-heatmap2D(Tmap2D, config2D, probeX=0.065, probeY=0.055, prefix="Simultion 2 - ") # 2D map
+heatmap1D(Tmap1D, config1D, probeX=0.2, prefix="Simulation 1 - ")   # 1D final distribution
+heatmap2D(Tmap2D, config2D, probeX=0.065, probeY=0.055, prefix="Simulation 2 - ") # 2D map
 
-probe1D(Thist1D, config1D, probeX=0.2, prefix="Simultion 1 - ")    # 1D probe vs time
-probe2D(Thist2D, config2D, probeX=0.065, probeY=0.055, prefix="Simultion 2 - ")  # 2D probe vs time
+probe1D(Thist1D, config1D, probeX=0.2, prefix="Simulation 1 - ")    # 1D probe vs time
+probe2D(Thist2D, config2D, probeX=0.065, probeY=0.055, prefix="Simulation 2 - ")  # 2D probe vs time
