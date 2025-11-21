@@ -1,9 +1,13 @@
-HeatTransfer Simulation Project:
-    A Python project for solving 1-D and 2-D transient heat-conduction problems 
-    using explicit finite-difference methods (CPU and GPU versions). Designed as
-    a demo for experimentation, visualisation, and performance comparisons between 
-    solvers.
+🌡️ GPU-Accelerated Heat-Transfer Simulation Project:
+A Python toolkit for solving 1-D and 2-D transient heat-conduction problems using explicit finite-difference methods with:
+    CPU (NumPy) solvers
+    GPU vectorised solvers (CuPy)
+    GPU custom CUDA C kernels (CuPy RawKernel)
 
+Designed for experimentation, visualisation, and benchmarking the performance of different numerical implementations.
+
+
+📁 Project Structure
 HeatTransfer/
 │
 ├── main.py               # Entry point for running simulations
@@ -26,7 +30,7 @@ HeatTransfer/
 |    |__ performance/      # Contains results of runtime analysis
 
 
-Features:
+🚀 Features:
     1-D and 2-D explicit heat-diffusion solvers
     Custom temperature discontinuities via config dictionaries
     Neumann (insulated) boundary conditions
@@ -34,7 +38,8 @@ Features:
     Export final temperature fields to CSV
     Modular structure for future extensions (GPU, animations, measurement 'probe' plots)
 
-Running a Simulation:
+
+🧠 Running a Simulation:
     Configure .venv with python 3.12 or newer and run:
 
         pip install -r requirements.txt
@@ -57,6 +62,7 @@ Running a Simulation:
         A heatmap
         A scatter graph of a specified temperature point
 
+
 Configuration Format (example):
     
     config2D = {
@@ -75,7 +81,8 @@ Configuration Format (example):
         }
     }
 
-WARNINGS:
+
+⚠️ WARNINGS:
     Boundary Behaviour and Corner Node Restriction (2D Solver):
         The 2D heat solver uses:
             Explicit finite-difference update
@@ -93,6 +100,29 @@ WARNINGS:
             
             Instead place the heat source one point diagonally inwards i.e:
                 (dx, dx) → valid
+    
+    GPU Requiremnts:
+        This project requires an NVIDIA GPU with:
+            CuPy installed with a CUDA-matched build (cupy-cuda12x)
+            CUDA Toolkit 12.4 or later installed locally
+        
+    If a GPU is not detected, the CPU solver still works.
+
+📊 Performance Testing:
+    perform_plotter.py performs a controlled runtime comparison of:
+        
+        CPU (NumPy)
+        GPU CuPy (vectorised)
+        GPU CUDA C kernels
+    
+    with identical physics and varying grid sizes (N²).
+
+    It automatically:
+        
+        loads config_data.csv
+        runs multiple solvers
+        records their runtimes
+        generates a performance figure
 
 To-Do / Future Updates
     Add animation of heat propagation
@@ -101,4 +131,9 @@ To-Do / Future Updates
     Add automated stability check
     Add logging & progress bars
 
+📜 License:
+    MIT License (see LICENSE file).
 
+Acknowledgements:
+    This code was written by the repository author
+    Code comments were generated with ChatGPT and checked by the repository author
