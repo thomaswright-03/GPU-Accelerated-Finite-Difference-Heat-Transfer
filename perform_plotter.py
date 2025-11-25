@@ -5,6 +5,7 @@ import contextlib, os, sys
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 
 # Import the three solvers used for benchmarking
 from solvers.CPU import CPU2D                # Pure NumPy CPU solver
@@ -143,13 +144,24 @@ plt.xlabel("Grid size (N²)", fontsize=12)
 plt.ylabel("Runtime (s)", fontsize=12)
 plt.title("2D Heat Equation Runtime vs Grid Size", fontsize=14)
 
+#Set the major and minor tickers, grid, and x/y lims
+plt.gca().yaxis.set_major_locator(ticker.MultipleLocator(10))
+plt.gca().yaxis.set_minor_locator(ticker.MultipleLocator(2.5))
+plt.gca().xaxis.set_major_locator(ticker.MultipleLocator(1000))
+plt.gca().xaxis.set_minor_locator(ticker.MultipleLocator(250))
+
+plt.grid(True, which='major', alpha=0.3)
+plt.grid(True, which='minor', alpha=0.15)
+
+plt.xlim(-500,11000) #Change if larger grids are used
+plt.ylim(-5,t_CPU*1.1)
+
 # Hardware footnote added to figure (not axis)
 plt.figtext(0.99, 0.01,
             "Hardware: i7-12700H, 16 GB RAM, NVIDIA RTX 3050 Laptop GPU (4 GB VRAM), CUDA 12.4",
             ha="right", fontsize=8)
 
 # Styling
-plt.grid(True, linestyle="--", alpha=0.4)
 plt.legend()
 plt.tight_layout()
 
